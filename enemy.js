@@ -39,9 +39,7 @@ function createEnemy(playerX, playerY) {
 
 function enemyAction (enemy) {
 
-    // console.log(enemy);
-
-    
+    // random number from -5 to 5
     let xNew = Math.floor(Math.random() * 10) - 5;
     let yNew = Math.floor(Math.random() * 10) - 5;
 
@@ -74,7 +72,7 @@ function enemyAction (enemy) {
 
     }
 
-    const fire = 0.01;
+    const fire = 0.01 + (enemyKilled * 0.001);
 
     let enemyRandomFire = Math.random();   
     
@@ -89,20 +87,25 @@ function enemyAttact (enemy){
 }
 
 
+let maxEnemyNumber = 3;
+
 
 function enemyMovement (){
+
+    // update the maxEnemyNumber base on the number enemyKilled
+    maxEnemyNumber = 3 + Math.floor(enemyKilled/5); 
 
     if (enemies.length == 0 ) {
 
         // creat a enemy if there is no enemy
         enemies.push(createEnemy(player.x, player.y));
 
-    }else if (enemies.length < 3){
+    }else if (enemies.length < maxEnemyNumber){
 
         // try to create enemy if there is less then 3 enemies
         let ran = Math.random();
 
-        if (ran > 0.95){
+        if (ran > (0.95 - (maxEnemyNumber * 0.01))){
             enemies.push(createEnemy(player.x, player.y));
         }
     }
@@ -111,6 +114,8 @@ function enemyMovement (){
     for (let enemy of enemies){
         enemyAction(enemy);
     }
+
+
 }
 
 
@@ -121,15 +126,15 @@ function KilledEnemy (){
         for (let [i, enemy] of enemies.entries()){
             if (Math.abs(playerBullet.x - enemy.x) < 30 && Math.abs(playerBullet.y - enemy.y) < 30) {
 
-
-
-
-                
                 enemies.splice(i, 1);
 
-                console.log("BULLET HIT! Enemy Died");
 
                 score += 10;
+
+                enemyKilled += 1;
+                enemyCount.textContent = enemyKilled.toFixed(0); 
+
+                console.log("BULLET HIT! Enemy Died" + enemyKilled);
 
             }
         }

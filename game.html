@@ -24,10 +24,6 @@
 
 
 
-
-
-
-
         <div class="game-container">
 
             <div class="game-area">
@@ -43,6 +39,12 @@
                     width="1000"
                     height="700">
                 </canvas>
+
+                 <div id="gameOverScreen" class="game-over-screen">
+                    <h2>Game Over</h2>
+                    <p>Score: <span id="finalScore">0</span></p>
+                    <button id="restartButton">Restart</button>
+                </div>
 
             </div>
 
@@ -66,7 +68,7 @@
                 </div>
 
                 <div>
-                    <strong>Enemies</strong>
+                    <strong>Enemies Killed</strong>
                     <div>
                         <span id="enemyCount">0</span>
                     </div>

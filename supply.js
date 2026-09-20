@@ -18,7 +18,7 @@ function ifSupplyBePickedUp () {
     for (let [i, supply] of supplies.entries()){
         if (Math.abs(player.x - supply.x) < 30 && Math.abs(player.y - supply.y) < 30) {
 
-            console.log("got a Supply!");
+
 
             health += 5;
             ammo += 10; 
@@ -44,22 +44,19 @@ function checkExpiredSupplies() {
 
 function keepTrackingSupplies(){
 
-    console.log("Tracking is called "+ supplies.length );
     // supplies will always have one on screen, and it will always give the first one
     // the maximum supplies is 10, and it will generated with a rate. 
     
     if (supplies.length === 0) {
         // make the firt supply
-        console.log("give the first supply");
         supplies.push(creatSupply());
-        console.log("Created supply:", supplies[0]);
     }else if (supplies.length <= 10){
         // random give some supplies
 
         let ran = Math.random();
 
         if (ran > 0.98){
-            console.log("give the rest of supplies");
+
             supplies.push(creatSupply());
         }
     }

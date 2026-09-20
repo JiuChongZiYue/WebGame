@@ -4,6 +4,9 @@ const ctx = canvas.getContext("2d");
 canvasWidth = canvas.width;
 canvasHeight = canvas.height;
 
+const gameOverScreen = document.getElementById("gameOverScreen");
+const finalScore = document.getElementById("finalScore");
+
 let score = 0;
 const scoreDisplay = document.getElementById("score");
 
@@ -13,12 +16,24 @@ const healthDisplay = document.getElementById ("health");
 let ammo = 30;
 const ammoDisplay = document.getElementById ("ammo");
 
+let enemyKilled = 0;
+let enemyCount = document.getElementById("enemyCount");
+
 let alive = true;
 let paused = false;
 
+
+
+
+// restart Button
+const restartButton = document.getElementById("restartButton");
+restartButton.addEventListener("click", function() {
+    console.log("BUTTON WAS CLICKED!");
+});
+
+
+// pause Button
 const pauseButton = document.getElementById("pauseButton");
-
-
 pauseButton.addEventListener("click", function() {
 
     paused = !paused;
@@ -45,6 +60,11 @@ document.addEventListener("keydown", function(event) {
 
 
 
+// show gameover on screen
+function showGameOver() {
+    gameOverScreen.style.display = "flex";
+    finalScore.textContent = score.toFixed(2);
+}
 
 
 
@@ -102,6 +122,7 @@ function beHurt (){
 function ifDead (){
     if (health <= 0) {
         alive = false; 
+        showGameOver();
     }
 }
 
@@ -119,10 +140,7 @@ function update() {
     
 
     score = score + 0.1;
-    // scoreDisplay.textContent = score;
     scoreDisplay.textContent = score.toFixed(2);
-
-    // healthDisplay.textContent = health;
     healthDisplay.textContent = health.toFixed(0);
 
     ammoDisplay.textContent = ammo.toFixed(0);
