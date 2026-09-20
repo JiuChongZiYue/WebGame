@@ -4,14 +4,101 @@
         <title>
             WebGame
         </title>
+
+        <style>
+            .game-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
 
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <h1>
+            Try to Survive!
+        </h1>
 
+
+
+
+
+
+
+
+        <div class="game-container">
+
+            <div class="game-area">
+
+                <div>
+                    Score: <span id="score">0</span>
+                </div>
+
+                <button id="pauseButton">Pause</button>
+
+                <canvas
+                    id="gameCanvas"
+                    width="1000"
+                    height="700">
+                </canvas>
+
+            </div>
+
+
+            <div class="game-info">
+
+                <h2>Game Info</h2>
+
+                <div>
+                    <strong>Health</strong>
+                    <div>
+                        <span id="health">100</span> / 100
+                    </div>
+                </div>
+
+                <div>
+                    <strong>Ammo</strong>
+                    <div>
+                        <span id="ammo">30</span> / 30
+                    </div>
+                </div>
+
+                <div>
+                    <strong>Enemies</strong>
+                    <div>
+                        <span id="enemyCount">0</span>
+                    </div>
+                </div>
+
+                <div>
+                    <strong>Time</strong>
+                    <div>
+                        <span id="gameTime">0</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        <script src="player.js"></script>
+        <script src="supply.js"></script>
+        <script src="enemy.js"></script>
+        <script src="bullet.js"></script>
         <script src="game.js"></script>
 
+
+        <!-- <h2>
+            This is a game!
+        </h2> -->
     </body>
 
 
